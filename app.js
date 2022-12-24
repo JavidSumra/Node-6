@@ -10,7 +10,7 @@ const ejs = require("ejs");
 
 app.use(bodyParser.json());
 app.set('view engine','ejs');
-const pathofview = path.join(__dirname+"/view");
+const pathofview = path.join(__dirname+"/views");
 
 app.set("views",pathofview);
 
@@ -21,7 +21,7 @@ app.get("/",async function (request, response) {
    const today = await Todo.duetoday();
    
    if(request.accepts("html")){
-    response.render("index",{
+    response.render("todos",{
       todolist,yesterday,tomorrow,today,
     });
    }

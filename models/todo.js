@@ -1,5 +1,5 @@
 "use strict";
-const { Model,option} = require("sequelize");
+const { Model,Op} = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Todo extends Model {
     /**
@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       return this.findAll({
         where:{
           dueDate:{
-            [option.lt]:new Date().toISOString()
+            [Op.lt]:new Date().toISOString()
           },
         },
         order:[["id","ASC"]]
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       return this.findAll({
         where:{
           dueDate:{
-            [option.gt]:new Date().toISOString()
+            [Op.gt]:new Date().toISOString()
           },
         },
         order:[["id","ASC"]]
@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       return this.findAll({
         where:{
           dueDate:{
-            [option.eq]:new Date().toISOString()
+            [Op.eq]:new Date().toISOString()
           },
         },
         order:[["id","ASC"]]
